@@ -1,23 +1,8 @@
 #Improved Redge after more experience
-import asyncio
-import codecs
-from http import client
-from pydoc import describe
-from tempfile import tempdir
-from time import sleep
-from itertools import chain
-from socket import setdefaulttimeout
+from functionheaders import *
 
-import discord
-import os
-import subprocess
-from discord.ext import commands
-import requests
-from bs4 import BeautifulSoup
-import time
 token = 'MTAxMjc3MjM2Mzc3NzA5MzcxMg.G3Y6pR.Zfxjr91X4kAz7spTheY6nxLNYd4TKrGHQWeahA'
 #https://discord.com/api/oauth2/authorize?client_id=921811125799125023&permissions=527744384064&scope=bot 
-#from discreactbot import *
 
 
 intents = discord.Intents.all()
