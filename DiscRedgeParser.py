@@ -19,8 +19,6 @@ token = 'MTAxMjc3MjM2Mzc3NzA5MzcxMg.G3Y6pR.Zfxjr91X4kAz7spTheY6nxLNYd4TKrGHQWeah
 #https://discord.com/api/oauth2/authorize?client_id=921811125799125023&permissions=527744384064&scope=bot 
 #from discreactbot import *
 
-service = Service(executable_path="chromedriver")
-driver = webdriver.Chrome(service=service, options=options)
 
 intents = discord.Intents.all()
 intents.members = True #New intents for discord bots. Can use this many times
