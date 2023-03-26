@@ -9,7 +9,6 @@ from tempfile import tempdir
 from time import sleep
 from itertools import chain
 from socket import setdefaulttimeout
-
 import discord
 import os
 import subprocess
@@ -20,7 +19,8 @@ import time
 #Function can run on single time. Meaning, one run then compare, then compare etc.
 
 class redditData:
-    def __init__(self,title,link):
+    def __init__(self,SR,title,link):
+        self.SR = SR
         self.title = title
         self.link = link
 
@@ -43,10 +43,10 @@ TOKEN = res.json()['access_token']
 headers['Authorization'] = f'bearer {TOKEN}'
 #essentially, logging in and getting access to API. this now lets us access every endpoint
 
-def Reddit_parse(subreddit,objectComparison):# add back memory spot for actual running. can make a class for reddit data, and then filter
+def Reddit_parse(objectComparison):# add back memory spot for actual running. can make a class for reddit data, and then filter
     front = 'https://oauth.reddit.com/r/'
     end = '/new?limit=1'
-    res = rq.get(front+subreddit+end,headers=headers)
+    res = rq.get(front+objectComparison.SR+end,headers=headers)
     for post in res.json()['data']['children']:     #easier to do so in a array for json. can filter for returning to parser
         temp = (post['data']['title'],("https://www.reddit.com/" + post['data']['permalink'])) #creating a temporary object compare.
         if (objectComparison.title == temp.title):
@@ -54,9 +54,6 @@ def Reddit_parse(subreddit,objectComparison):# add back memory spot for actual r
         else:
             objectComparison.title = temp.title
             objectComparison.link = temp.link #if different post, set different and reprint.
+            return objectComparison
 #data handling should be over.
     
-
-
-
-Reddit_parse("MechanicalKeyboards")
