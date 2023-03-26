@@ -14,3 +14,4 @@ PromoCodes
 PromoCodeShare
 DiscountedProducts
 Frugal
+wallstreetbets

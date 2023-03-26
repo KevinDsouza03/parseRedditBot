@@ -16,6 +16,7 @@ async def on_ready():
 
 @bot.command()
 async def Start(ctx):
+    await ctx.channel.send("Monitor start")
     i = 0
     SRObjects = []
     f = open("sr.txt")
@@ -23,16 +24,16 @@ async def Start(ctx):
         SRObjects.append({"SR" : i.strip(),"title" : "FirstIteration", "link" : "FirstIteration"})
     #populate array with sr's
     for i in range(1,1000):
-        sleep(5)
+        sleep(15)
         for iter in SRObjects:
+            sleep(5)
             result = fs.Reddit_parse(iter)
             if (result != -1):
-                embed=discord.Embed(title=iter["title"],description=iter["title"])
+                embed=discord.Embed(title=iter["title"],description=iter["SR"])
                 embed.add_field(name="Link",value={iter["link"]})
                 await ctx.channel.send(embed=embed)
-                sleep(10)
             else:
-                print("Sleeping")
+                print("Sleeping " + iter["SR"])
                 pass
 
 #will define commands here, but functions in other. 
