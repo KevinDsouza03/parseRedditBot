@@ -56,8 +56,14 @@ def Reddit_parse(objectComparison):# add back memory spot for actual running. ca
         if (objectComparison["title"] == temp["title"]):
             return -1 #handle -1, do not print. go next?
         else:
-            objectComparison["title"] = temp["title"]
-            objectComparison["link"] = temp["link"] #if different post, set different and reprint.
+            if (len(temp["title"]) > 255):
+                pass
+            else:
+                objectComparison["title"] = temp["title"]
+            if (len(temp["link"]) > 255):
+                pass
+            else:
+                objectComparison["link"] = temp["link"] #uniqueness update
             return objectComparison
 #data handling should be over.
     
