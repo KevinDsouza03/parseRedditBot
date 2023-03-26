@@ -19,19 +19,22 @@ async def Start(ctx):
     i = 0
     SRObjects = []
     f = open("sr.txt")
-    for i in f.readline():
-        SRObjects.append({f.readline(),"FirstIteration","FirstIteration"})
+    for i in f:
+        SRObjects.append({"SR" : i.strip(),"title" : "FirstIteration", "link" : "FirstIteration"})
     #populate array with sr's
     for i in range(1,1000):
+        sleep(5)
         for iter in SRObjects:
             result = fs.Reddit_parse(iter)
             if (result != -1):
-                embed=discord.Embed(title=iter.title,description=iter.SR)
-                embed.add_field(name="Link",value={iter.link})
+                embed=discord.Embed(title=iter["title"],description=iter["title"])
+                embed.add_field(name="Link",value={iter["link"]})
                 await ctx.channel.send(embed=embed)
                 sleep(10)
             else:
-                sleep(15)
+                print("Sleeping")
+                pass
+
 #will define commands here, but functions in other. 
 
 bot.run(token)

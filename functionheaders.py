@@ -46,14 +46,18 @@ headers['Authorization'] = f'bearer {TOKEN}'
 def Reddit_parse(objectComparison):# add back memory spot for actual running. can make a class for reddit data, and then filter
     front = 'https://oauth.reddit.com/r/'
     end = '/new?limit=1'
-    res = rq.get(front+objectComparison.SR+end,headers=headers)
+    res = rq.get(front+objectComparison["SR"]+end,headers=headers)
     for post in res.json()['data']['children']:     #easier to do so in a array for json. can filter for returning to parser
-        temp = (post['data']['title'],("https://www.reddit.com/" + post['data']['permalink'])) #creating a temporary object compare.
-        if (objectComparison.title == temp.title):
+        temp = {
+            "title" :post['data']['title'],
+            "link": ("https://www.reddit.com/" + post['data']['permalink'])
+            } 
+        #creating a temporary object compare.
+        if (objectComparison["title"] == temp["title"]):
             return -1 #handle -1, do not print. go next?
         else:
-            objectComparison.title = temp.title
-            objectComparison.link = temp.link #if different post, set different and reprint.
+            objectComparison["title"] = temp["title"]
+            objectComparison["link"] = temp["link"] #if different post, set different and reprint.
             return objectComparison
 #data handling should be over.
     
