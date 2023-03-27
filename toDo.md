@@ -1,4 +1,3 @@
 To Do:
-Reddit Parser Finished
-
-Now, discord formatting and displaying needs to be done : )
+Bot scraping Finished:
+Now add a keyword add and remove

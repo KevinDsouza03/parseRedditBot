@@ -66,4 +66,7 @@ def Reddit_parse(objectComparison):# add back memory spot for actual running. ca
                 objectComparison["link"] = temp["link"] #uniqueness update
             return objectComparison
 #data handling should be over.
-    
+
+
+def keyword_add(subreddit):
+    pass

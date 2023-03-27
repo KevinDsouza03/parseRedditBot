@@ -18,6 +18,7 @@ async def on_ready():
 @bot.command()
 async def Start(ctx):
     await ctx.channel.send("Monitor start")
+    print("Start\n")
     i = 0
     SRObjects = []
     f = open("sr.txt")
@@ -33,11 +34,15 @@ async def Start(ctx):
                 embed=discord.Embed(title=iter["title"],description=iter["SR"])
                 embed.add_field(name="Link",value={iter["link"]})
                 await ctx.channel.send(embed=embed)
+                if ("keyboard" in iter["title"] or "Keyboard" in iter["title"]):
+                    await ctx.channel.send("Wesley Ping<@611985326029930517>")
             else:
                 print("Sleeping " + iter["SR"])
                 pass
 
 #will define commands here, but functions in other. 
 
+async def Stop(ctx):
+    time.wait()
 bot.run(token)
 
