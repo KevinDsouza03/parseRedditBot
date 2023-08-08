@@ -3,8 +3,8 @@ import functionheaders as fs
 from functionheaders import * 
 import time
 
-token = 'MTAxMjc3MjM2Mzc3NzA5MzcxMg.G3Y6pR.Zfxjr91X4kAz7spTheY6nxLNYd4TKrGHQWeahA'
-#https://discord.com/api/oauth2/authorize?client_id=921811125799125023&permissions=527744384064&scope=bot 
+secrets_filename = 'secrets.json'  # can also replace with path to JSON file
+username, password, token, client_id, secret_key = read_secrets(secrets_filename)
 
 
 intents = discord.Intents.all()

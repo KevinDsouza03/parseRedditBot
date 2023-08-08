@@ -1,6 +1,4 @@
-#secret	cIxXuPvjqqOmlmrsM5E4dhR4-ZLJ2A
 #personal use script
-#0NMev7gCd_Lof_8ryVnRzA
 import asyncio
 import codecs
 from http import client
@@ -16,7 +14,9 @@ from discord.ext import commands
 import requests as rq
 from bs4 import BeautifulSoup
 import time
+import json
 #Function can run on single time. Meaning, one run then compare, then compare etc.
+
 
 class redditData:
     def __init__(self,SR,title,link):
@@ -25,21 +25,33 @@ class redditData:
         self.link = link
 
 
+def read_secrets(filename):
+    with open(filename, 'r') as file:
+        data = json.load(file)
+        
+    username = data.get('username')
+    password = data.get('password')
+    token = data.get('token')
+    client_id = data.get('CLIENT_ID')
+    secret_key = data.get('SECRET_KEY')
+    
+    return username, password, token, client_id, secret_key
 
-CLIENT_ID = '0NMev7gCd_Lof_8ryVnRzA'
-SECRET_KEY = 'cIxXuPvjqqOmlmrsM5E4dhR4-ZLJ2A'
+secrets_filename = 'secrets.json'  # can also replace with path to JSON file
+username, password, TOKEN, CLIENT_ID, SECRET_KEY = read_secrets(secrets_filename)
+
+
 auth = rq.auth.HTTPBasicAuth(CLIENT_ID,SECRET_KEY) 
 #logging into reddit api
 data = {
     'grant_type' : 'password',
-    'username' : 'blurzl',
-    'password' : 'Bengal29'
+    'username' : {username},
+    'password' : {password}
 }
 headers = {'User-Agent' : 'ScraperKevinDAPI/0.0.1'}
 res = rq.post('https://www.reddit.com/api/v1/access_token',
                     auth=auth,data=data,headers=headers)
 
-TOKEN = res.json()['access_token']
 headers['Authorization'] = f'bearer {TOKEN}'
 #essentially, logging in and getting access to API. this now lets us access every endpoint
 
