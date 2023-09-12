@@ -44,10 +44,11 @@ username, password, TOKEN, CLIENT_ID, SECRET_KEY = read_secrets(secrets_filename
 auth = rq.auth.HTTPBasicAuth(CLIENT_ID,SECRET_KEY) 
 #logging into reddit api
 data = {
-    'grant_type' : 'password',
-    'username' : {username},
-    'password' : {password}
+    'grant_type': 'password',
+    'username': username,
+    'password': password
 }
+
 headers = {'User-Agent' : 'ScraperKevinDAPI/0.0.1'}
 res = rq.post('https://www.reddit.com/api/v1/access_token',
                     auth=auth,data=data,headers=headers)
